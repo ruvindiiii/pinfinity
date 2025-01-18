@@ -1,11 +1,6 @@
-import ImageShape from "./App";
+import type { ImageShape } from "./App";
 import Masonry from "react-layout-masonry";
-import {
-  AnimatePresence,
-  type Variants,
-  motion,
-  useInView,
-} from "motion/react";
+import { AnimatePresence, type Variants, motion } from "motion/react";
 
 const variants: Variants = {
   inital: () => ({
