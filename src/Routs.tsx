@@ -5,7 +5,6 @@ import { useState } from "react";
 import "./output.css";
 import App from "./App.tsx";
 import LogIn from "./LogIn.tsx";
-import SearchBar from "./SearchBar.tsx";
 
 function Routs(props) {
   const [keyWord, setKeyWord] = useState<string>("nepal");
@@ -14,9 +13,11 @@ function Routs(props) {
     <>
       <StrictMode>
         <BrowserRouter>
-          <SearchBar setSearchKey={setKeyWord} />
           <Routes>
-            <Route path="/" element={<App searchWord={keyWord} />} />
+            <Route
+              path="/"
+              element={<App searchWord={keyWord} setSearchWord={setKeyWord} />}
+            />
             <Route path="/login" element={<LogIn />} />
             <Route path="/" element={<LogIn />} />
           </Routes>
