@@ -7,7 +7,7 @@ import App from "./App.tsx";
 import LogIn from "./LogIn.tsx";
 
 function Routs(props) {
-  const [keyWord, setKeyWord] = useState<string>("nepal");
+  const [keyWord, setKeyWord] = useState<string>("china");
 
   return (
     <>
