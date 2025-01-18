@@ -3,8 +3,8 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import ImageContent from "./ImageContent";
-import SearchBar from "./SearchBar";
 import Home from "./LogIn";
+import SearchBar from "./SearchBar";
 
 export type ImageShape = {
   url: string;
@@ -41,6 +41,7 @@ function App(props) {
   return (
     <>
       <div>
+        <SearchBar setSearchKey={props.setSearchWord} />
         <ImageContent content={images} />
       </div>
     </>
