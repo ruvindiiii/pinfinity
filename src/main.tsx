@@ -1,4 +1,4 @@
 import { createRoot } from "react-dom/client";
-import Routs from "./Routs";
+import App from "./App";
 
-createRoot(document.getElementById("root")!).render(<Routs />);
+createRoot(document.getElementById("root")!).render(<App />);

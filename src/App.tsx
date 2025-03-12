@@ -1,49 +1,29 @@
-import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import ImageContent from "./ImageContent";
-import Home from "./LogIn";
-import SearchBar from "./SearchBar";
+import { BrowserRouter, Routes, Route } from "react-router";
+import { StrictMode } from "react";
+import { useState } from "react";
+import Search from "./pages/Search.tsx";
+import Login from "./pages/Login.tsx";
 
-export type ImageShape = {
-  url: string;
-  id: number;
-};
+import "./output.css";
 
-function App(props) {
-  const [images, setImages] = useState<ImageShape[]>([]);
-
-  useEffect(() => {
-    const GetData = async () => {
-      let url = `https://api.pexels.com/v1/search?query=${props.searchWord}&per_page=80`;
-      let response = await fetch(url, {
-        method: "GET",
-        headers: {
-          Authorization:
-            "vEnvq0c4WmWsdTZouQQ2WYfSgbmU88wD8KrbxZ31zNAAo0mGY4m7SEYi",
-        },
-      });
-      let result = await response.json();
-      console.log(result);
-      let imageArr = result.photos.map((resObj: any) => {
-        return {
-          url: resObj.src.medium,
-          id: resObj.id,
-        };
-      });
-      setImages(imageArr);
-    };
-
-    GetData();
-  }, [props.searchWord]);
+function App() {
+  const [keyWord, setKeyWord] = useState<string>("Asia");
 
   return (
     <>
-      <div>
-        <SearchBar setSearchKey={props.setSearchWord} />
-        <ImageContent content={images} />
-      </div>
+      <StrictMode>
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Search searchWord={keyWord} setSearchWord={setKeyWord} />
+              }
+            />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </BrowserRouter>
+      </StrictMode>
     </>
   );
 }

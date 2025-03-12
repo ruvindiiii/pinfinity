@@ -1,4 +1,4 @@
-import type { ImageShape } from "./App";
+import type { ImageShape } from "../api/image-api";
 import Masonry from "react-layout-masonry";
 import { AnimatePresence, type Variants, motion } from "motion/react";
 
@@ -25,15 +25,15 @@ const variants: Variants = {
   }),
 };
 
-type ContentProps = {
-  content: ImageShape[];
+type ImageGridItemProps = {
+  images: ImageShape[];
 };
 
-function ImageContent(props: ContentProps) {
+function ImageGridItem(props: ImageGridItemProps) {
   return (
     <AnimatePresence key={Math.random()} mode="popLayout">
       <Masonry columns={{ 640: 1, 768: 2, 1024: 3, 1280: 5 }} gap={12}>
-        {props.content.map((imageShapeObj) => {
+        {props.images.map((image) => {
           return (
             <motion.div
               variants={variants}
@@ -43,8 +43,8 @@ function ImageContent(props: ContentProps) {
               className="flex flex-col gap-4"
             >
               <img
-                key={imageShapeObj.url}
-                src={imageShapeObj.url}
+                key={image.url}
+                src={image.url}
                 className="rounded-md object-cover size-full"
               />
             </motion.div>
@@ -55,4 +55,4 @@ function ImageContent(props: ContentProps) {
   );
 }
 
-export default ImageContent;
+export default ImageGridItem;
